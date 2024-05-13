@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "assets": [
+      {
+        "include": "../config/*.yaml",
+        "outDir": "./dist"
+      }
+    ]
+  },
+  "projects": {
+    "mysql": {
+      "type": "library",
+      "root": "libs/mysql",
+      "entryFile": "index",
+      "sourceRoot": "libs/mysql/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mysql/tsconfig.lib.json"
+      }
+    },
+    "schedule": {
+      "type": "library",
+      "root": "libs/schedule",
+      "entryFile": "index",
+      "sourceRoot": "libs/schedule/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/schedule/tsconfig.lib.json"
+      }
+    },
+    "oss": {
+      "type": "library",
+      "root": "libs/oss",
+      "entryFile": "index",
+      "sourceRoot": "libs/oss/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/oss/tsconfig.lib.json"
+      }
+    },
+    "winston-logger": {
+      "type": "library",
+      "root": "libs/winston-logger",
+      "entryFile": "index",
+      "sourceRoot": "libs/winston-logger/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/winston-logger/tsconfig.lib.json"
+      }
+    }
+  }
+}
