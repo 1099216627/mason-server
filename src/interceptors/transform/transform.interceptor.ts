@@ -16,11 +16,11 @@ export class TransformInterceptor<T>
     context: ExecutionContext,
     next: CallHandler,
   ): Observable<Response<T>> {
-    return next
-      .handle()
-      .pipe(
-        map((data) => ({ code: 200, message: 'request successful', data })),
-      );
+    return next.handle().pipe(
+      map((data) => {
+        return { code: 200, data, message: 'request successful' };
+      }),
+    );
   }
 }
 

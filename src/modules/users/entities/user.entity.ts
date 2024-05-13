@@ -9,6 +9,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import {
+  IsPreset,
+  UserGender,
+  UserStatus,
+} from '../../../constants/typeorm.constants';
 
 @Entity()
 export class User {
@@ -36,8 +41,8 @@ export class User {
 
   @Column({
     comment: '昵称',
-    nullable: false,
-    length: 30,
+    nullable: true,
+    length: 50,
   })
   nickname: string;
 
@@ -55,6 +60,41 @@ export class User {
     name: 'phone_number',
   })
   phoneNumber: string;
+
+  @Column({
+    comment: '头像',
+    nullable: true,
+    length: 200,
+  })
+  avatar: string;
+
+  @Column({
+    type: 'enum',
+    comment: '状态 0禁用 1启用',
+    nullable: false,
+    enum: UserStatus,
+    default: UserStatus.ENABLED,
+  })
+  status: number;
+
+  @Column({
+    type: 'enum',
+    comment: '性别 1男 0女',
+    nullable: false,
+    enum: UserGender,
+    default: UserGender.MALE,
+  })
+  gender: number;
+
+  @Column({
+    type: 'enum',
+    comment: '是否为预设记录 1是 0否',
+    nullable: false,
+    enum: IsPreset,
+    default: IsPreset.NO,
+    name: 'is_preset',
+  })
+  isPreset: number;
 
   @CreateDateColumn({
     name: 'created_at',

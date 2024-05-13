@@ -36,7 +36,7 @@ export class Competence {
   })
   updatedAt: Date;
 
-  @ManyToMany(() => Role, (role) => role.competence)
+  @ManyToMany(() => Role, (role) => role.competences)
   @JoinTable({
     name: 'competence_relations_role',
   })

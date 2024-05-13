@@ -1,25 +1,17 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-} from '@nestjs/common';
+import { Controller, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-
+import { JwtGuard } from '../../guards/jwt/jwt.guard';
+import { Competences } from '../../decorators/competence/competences.decorator';
+import { PermissionsGuard } from '../../guards/permissions/permissions.guard';
 @Controller('users')
+@UseGuards(JwtGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(id);
-  }
-
+  @UseGuards(JwtGuard, PermissionsGuard)
+  @Competences('新建角色')
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  createUser() {
+    return 'hello';
   }
 }
