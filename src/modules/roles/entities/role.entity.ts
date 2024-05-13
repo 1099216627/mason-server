@@ -43,5 +43,5 @@ export class Role {
   users: User[];
 
   @ManyToMany(() => Competence, (competence) => competence.roles)
-  competence: Competence[];
+  competences: Competence[];
 }

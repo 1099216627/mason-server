@@ -11,6 +11,7 @@ import { MysqlModule } from '@app/mysql';
 import { OssModule } from '@app/oss';
 import { UploadModule } from './modules/upload/upload.module';
 import { LoggingMiddleware } from './middlewares/logging/logging.middleware';
+import { AuthModule } from '@app/auth';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { LoggingMiddleware } from './middlewares/logging/logging.middleware';
     MysqlModule,
     ScheduleModule,
     OssModule,
+    AuthModule,
     UsersModule,
     RolesModule,
     CompetenceModule,
